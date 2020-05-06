@@ -39,7 +39,12 @@ export class ReactiveComponent implements OnInit {
       apellido: ['',[Validators.required,Validators.minLength(5)]],
       //pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
       correo: ['',[Validators.pattern('[a-z0-9._%+-]+@[a-z0-9-]+[.]+[a-z]{2,3}$'),
-                  Validators.required]]
+                  Validators.required]],
+                  //anidado
+      direccion:this.fb.group({
+        distrito: ['',Validators.required],
+        ciudad: ['',Validators.required]
+      })
 
     });
   }
