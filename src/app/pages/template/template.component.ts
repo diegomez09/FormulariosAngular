@@ -12,25 +12,34 @@ export class TemplateComponent implements OnInit {
   usuario = {
     nombre: "Diego",
     apellido: "Gomez",
-    correo: "diego@gmail.com"
+    correo: "diego@gmail.com",
+    pais: ''
   }
+
+  paises:any[] = [];
 
   constructor(private pais:PaisService) { }
 
   ngOnInit(): void {
     this.pais.getPaises().subscribe(paises =>{
-      console.log(paises);
+      this.paises = paises;
+      //console.log(this.paises);
+      this.paises.unshift({
+        nombre: '[Seleccione una opnción]',
+        codigo: ''
+      })
     })
   }
 
   guardar(forma:NgForm){
-   // console.log(forma);
+   console.log(forma);
     console.log(forma.value);
 
     if(forma.invalid){
       Object.values(forma.controls).forEach(control =>{
         control.markAsTouched();
-      })
+      });
+      return ;
     }
 
   }
