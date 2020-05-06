@@ -13,7 +13,8 @@ export class TemplateComponent implements OnInit {
     nombre: "Diego",
     apellido: "Gomez",
     correo: "diego@gmail.com",
-    pais: ''
+    pais: '',
+    genero: 'M'
   }
 
   paises:any[] = [];
@@ -26,13 +27,13 @@ export class TemplateComponent implements OnInit {
       //console.log(this.paises);
       this.paises.unshift({
         nombre: '[Seleccione una opnción]',
-        codigo: ''
+        codigo: '',        
       })
     })
   }
 
   guardar(forma:NgForm){
-   console.log(forma);
+    console.log(forma);
     console.log(forma.value);
 
     if(forma.invalid){
