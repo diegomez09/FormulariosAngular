@@ -9,7 +9,7 @@ import { TemplateComponent } from './pages/template/template.component';
 const ROUTES:Routes = [
   {path: 'template' , component: TemplateComponent},
   {path: 'reactive' , component: ReactiveComponent},
-  { path: '**', redirectTo: 'template', pathMatch : 'full' },  
+  { path: '**', redirectTo: 'reactive', pathMatch : 'full' },  
 ];
 
 @NgModule({
