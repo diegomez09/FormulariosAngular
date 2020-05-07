@@ -12,6 +12,7 @@ export class ReactiveComponent implements OnInit {
   
   constructor(private fb:FormBuilder) {
     this.crearFormulario();
+    this.cargarFormulario();
    }
 
   ngOnInit(): void {
@@ -65,6 +66,19 @@ export class ReactiveComponent implements OnInit {
     });
   }
 
+  cargarFormulario(){
+    //se puede usar el reset en lugar de setvalue
+    this.forma.setValue({      
+      "nombre": 'Juana',
+      "apellido": "Peres",
+      "correo": "askdj@gm.col",
+      "direccion": {
+        "distrito": "ontario",
+        "ciudad": "otawa"
+    }
+  })
+  }
+
   guardar(){
     console.log(this.forma);
     if(this.forma.invalid){
@@ -77,6 +91,11 @@ export class ReactiveComponent implements OnInit {
         control.markAsTouched();
       });      
     }
+
+    //guardar servicio (posteo)
+    this.forma.reset({
+      nombre: 'Ejemplo'
+    });
   }
 
 }
