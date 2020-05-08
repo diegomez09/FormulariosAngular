@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive',
@@ -49,6 +49,10 @@ export class ReactiveComponent implements OnInit {
     this.forma.get('correo').touched
   }
 
+  get pasatiempos(){
+    return this.forma.get('pasatiempos') as FormArray;
+  }
+
   crearFormulario(){
     this.forma = this.fb.group({
       //Valor por defecto, sincronos,asincronos
@@ -61,14 +65,17 @@ export class ReactiveComponent implements OnInit {
       direccion:this.fb.group({
         distrito: ['',Validators.required],
         ciudad: ['',Validators.required]
-      })
+      }),
+      pasatiempos: this.fb.array([
+        [],[],[],[],[]
+      ])
 
     });
   }
 
   cargarFormulario(){
     //se puede usar el reset en lugar de setvalue
-    this.forma.setValue({      
+    this.forma.reset({      
       "nombre": 'Juana',
       "apellido": "Peres",
       "correo": "askdj@gm.col",
