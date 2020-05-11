@@ -14,6 +14,7 @@ export class ReactiveComponent implements OnInit {
   constructor(private fb:FormBuilder, private validadores:ValidadoresService) {
     this.crearFormulario();
     this.cargarFormulario();
+    this.crearListeners();
    }
 
   ngOnInit(): void {
@@ -32,6 +33,11 @@ export class ReactiveComponent implements OnInit {
   get correoNoValido(){
     return this.forma.get('correo').invalid &&
     this.forma.get('correo').touched
+  }
+
+  get usuarioNoValido(){
+    return this.forma.get('usuario').invalid &&
+    this.forma.get('usuario').touched
   }
 
   get distritoNoValido(){
@@ -80,6 +86,7 @@ export class ReactiveComponent implements OnInit {
       //pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
       correo: ['',[Validators.pattern('[a-z0-9._%+-]+@[a-z0-9-]+[.]+[a-z]{2,3}$'),
                   Validators.required]],
+      usuario: ['',  ,this.validadores.existeUsario],
       pass1: ['', [Validators.required]],
       pass2: ['', [Validators.required]],                  
                   //anidado
@@ -94,15 +101,31 @@ export class ReactiveComponent implements OnInit {
     });
   }
 
+  crearListeners(){
+    this.forma.valueChanges.subscribe(valor  =>{
+      console.log(valor);
+    });
+
+    this.forma.statusChanges.subscribe(status =>{
+      console.log(status);
+    })
+
+    this.forma.get('nombre').valueChanges.subscribe(valor =>{
+      console.log(valor);
+    })
+  }
+
   cargarFormulario(){
     //se puede usar el reset en lugar de setvalue
     this.forma.reset({      
-      "nombre": 'Juana',
-      "apellido": "Peres",
-      "correo": "askdj@gm.col",
-      "direccion": {
-        "distrito": "ontario",
-        "ciudad": "otawa"
+      nombre: 'Juana',
+      apellido: "Peres",
+      correo: "askdj@gm.col",
+      pass1: "123",
+      pass2:"123",
+      direccion: {
+        distrito: "ontario",
+        ciudad: "otawa"
     }
   })
   }
