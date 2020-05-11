@@ -45,6 +45,31 @@
     </div>
   </div>
 
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Contraseña</label>
+    <div class="col">
+
+      <input class="form-control"
+             type="password"
+             placeholder="Contraseña"
+             formControlName="pass1" 
+             [class.is-invalid]="passNoValido">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Repita contraseña</label>
+    <div class="col">
+
+      <input class="form-control"
+             type="password"
+             placeholder="Repita contraseña"
+             formControlName="pass2"    
+             [class.is-invalid]="pass2NoValido"         >             
+    </div>
+  </div>
+
+
   <div class="form-group row" formGroupName="direccion">
     <label class="col-2 col-form-label">Direccion</label>
     <div class="form-row col">
@@ -80,12 +105,12 @@
               <input class="form-control" type="terxt" [formControlName]="i">
             </td>
             <td>
-              <button class="btn btn-danger">Borrar</button>
+              <button (click)="borrarPasatiempo(i)" class="btn btn-danger">Borrar</button>
             </td>
           </tr>
         </tbody>
       </table>
-      <button type="button" class="btn btn-primary mt-3 mb-5 btn-block">Agregar</button>
+      <button type="button" (click)="agregarPasatiempo()" class="btn btn-primary mt-3 mb-5 btn-block">Agregar</button>
       </div>
   </div>
 
